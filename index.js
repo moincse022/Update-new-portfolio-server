@@ -7,7 +7,7 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = "mongodb+srv://moincse022:123@cluster0.sjvao.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -39,6 +39,13 @@ app.get('/blog', async (req, res) => {
    const result= await collection.find({}).toArray();
     res.send(result);
 })
+ app.get('/blog/:id', async (req, res) =>{
+    const id = req.params.id;
+    const query = { _id: new ObjectId(id) };
+    const result = await collection.findOne(query);
+    res.send(result);
+
+ })
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
