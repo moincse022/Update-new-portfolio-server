@@ -51,8 +51,8 @@ app.get('/', (req, res) => {
 });
 
 
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    // await client.db("admin").command({ ping: 1 });
+    // console.log("Pinged your deployment. You successfully connected to MongoDB!");
     // Add your database operations here
   } catch (err) {
     console.error("Failed to connect to MongoDB", err);
@@ -61,7 +61,7 @@ app.get('/', (req, res) => {
 
 app.listen(port, async () => {
   console.log(`Example app listening on port ${port}`);
-  await run();  // Connect to the database when the server starts
+   // Connect to the database when the server starts
 });
 
 // Optionally, handle process termination to close the MongoDB connection cleanly
